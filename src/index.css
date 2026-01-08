@@ -26,3 +26,8 @@ code {
   color: #ffffff;
   background-color: #212529;
 }
+
+.position-absolute.rounded-pill {
+  left: 62%;
+  width:40%;
+}

@@ -91,11 +91,10 @@ export class News extends Component {
                                 title={article.title ? article.title.slice(0, 45) + "..." : ""}
                                 description={article.description ? article.description.slice(0, 88) + "..." : ""}
                                 imgUrl={
-                                    article.urlToImage
-                                        ? article.urlToImage
-                                        : "https://image.cnbcfm.com/api/v1/image/108247926-1767585652556-gettyimages-51418825-APW2002121786670.jpeg"
+                                    article.urlToImage? article.urlToImage : "https://image.cnbcfm.com/api/v1/image/108247926-1767585652556-gettyimages-51418825-APW2002121786670.jpeg"
                                 }
-                                newsUrl={article.url}
+                                newsUrl={article.url} author={article.author ? article.author : "Unknown"} date={new Date(article.publishedAt).toGMTString()}
+                                source={article.source.name}
                             />
                         </div>
                     ))}
