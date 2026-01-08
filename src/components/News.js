@@ -69,7 +69,7 @@ export class News extends Component {
 
         return (
             <nav>
-                <ul className="pagination justify-content-center mb-0">
+                <ul className="pagination justify-content-center flex-wrap mb-0">
                     {pages}
                 </ul>
             </nav>
@@ -101,14 +101,16 @@ export class News extends Component {
                     ))}
                 </div>
 
-                <div className="d-flex justify-content-between align-items-center my-4">
-                    <button className="btn btn-dark" disabled={this.state.page <= 1} onClick={this.handlePrev}>
+                <div className="d-flex flex-column flex-sm-row justify-content-center align-items-center my-4 gap-2">
+                    <button className="btn btn-dark btn-sm" disabled={this.state.page <= 1} onClick={this.handlePrev}>
                         ← Previous
                     </button>
 
-                    {this.renderPagination()}
+                    <div className="d-flex justify-content-center flex-wrap">
+                        {this.renderPagination()}
+                    </div>
 
-                    <button className="btn btn-dark" disabled={this.state.page >= totalPages} onClick={this.handleNext}>
+                    <button className="btn btn-dark btn-sm" disabled={this.state.page >= totalPages} onClick={this.handleNext}>
                         Next →
                     </button>
                 </div>
