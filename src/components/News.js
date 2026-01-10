@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 export class News extends Component {
     pageSize = 5;
-    apiKey = "5e8b95d9bf6a7ec1571cd9b927031531";
+    apiKey = process.env.REACT_APP_NEWS_API;
     MAX_PAGES = 10;
 
     constructor() {
@@ -24,14 +24,14 @@ export class News extends Component {
 
     fetchNews = async (page) => {
         this.setState({ loading: true });
-
+        this.props.setProgress(10);
         const { category } = this.props;
 
         const url = `https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=us&max=${this.pageSize}&page=${page}&apikey=${this.apiKey}`;
 
         const data = await fetch(url);
         const parsedData = await data.json();
-
+        this.props.setProgress(70);
         const cappedTotalArticles = this.MAX_PAGES * this.pageSize;
 
         this.setState({
@@ -39,10 +39,11 @@ export class News extends Component {
             totalArticles: cappedTotalArticles,
             loading: false,
         });
+        this.props.setProgress(100);
     };
 
     getTotalPages = () => {
-        return this.MAX_PAGES; // 🔒 Never exceed this
+        return this.MAX_PAGES;
     };
 
     handlePrev = () => {
@@ -72,6 +73,11 @@ export class News extends Component {
         }
     };
 
+    capitaliseFirstLetter = (string) => {
+        let newString = string.toLowerCase();
+        return newString.charAt(0).toUpperCase() + newString.slice(1);
+    }
+
     renderPagination = () => {
         const totalPages = this.getTotalPages();
         const pages = [];
@@ -94,12 +100,12 @@ export class News extends Component {
     };
 
     render() {
-        const { heading } = this.props;
+        const { heading, category } = this.props;
         const totalPages = this.getTotalPages();
 
         return (
             <div className="container my-3">
-                <h1 className="text-center">{heading}</h1>
+                <h1 className="text-center">{heading} - {this.capitaliseFirstLetter(category)}</h1>
 
                 {this.state.loading && <Loader />}
 

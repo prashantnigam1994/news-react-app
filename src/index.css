@@ -26,3 +26,7 @@ code {
   color: #ffffff;
   background-color: #212529;
 }
+
+h1.text-center {
+  margin-top: 90px;
+}
