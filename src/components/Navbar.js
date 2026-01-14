@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
 
 export class Navbar extends Component {
+  
+  // Method to close navbar on mobile
+  closeNavbar = () => {
+    const navbar = document.getElementById("navbarSupportedContent");
+    if (navbar && navbar.classList.contains("show")) {
+      navbar.classList.remove("show"); // collapses the menu
+    }
+  }
 
   render() {
     return (
@@ -14,13 +22,13 @@ export class Navbar extends Component {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li className="nav-item"><NavLink end className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} aria-current="page" to="/">General</NavLink></li>
-                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/business">Business</NavLink></li>
-                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/entertainment">Entertainment</NavLink></li>
-                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/health">Health</NavLink></li>
-                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/science">Science</NavLink></li>
-                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/sports">Sports</NavLink></li>
-                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/technology">Technology</NavLink></li>
+                      <li className="nav-item"><NavLink end className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} aria-current="page" to="/" onClick={this.closeNavbar}>General</NavLink></li>
+                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/business" onClick={this.closeNavbar}>Business</NavLink></li>
+                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/entertainment" onClick={this.closeNavbar}>Entertainment</NavLink></li>
+                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/health" onClick={this.closeNavbar}>Health</NavLink></li>
+                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/science" onClick={this.closeNavbar}>Science</NavLink></li>
+                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/sports" onClick={this.closeNavbar}>Sports</NavLink></li>
+                      <li className="nav-item"><NavLink className={({ isActive }) =>`nav-link ${isActive ? "active" : ""}`} to="/technology" onClick={this.closeNavbar}>Technology</NavLink></li>
                   </ul>
                 </div>
             </div>
